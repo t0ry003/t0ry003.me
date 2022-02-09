@@ -163,6 +163,14 @@ button:hover,
 .button.button-mm:focus {
   filter: brightness(90%) }
 
+/* Constelation */
+.button.button-constelation {
+  color: #FFFFFF;
+  background-color: #000000 }
+.button.button-mm:hover,
+.button.button-mm:focus {
+  filter: brightness(90%) }
+
 
 /* LinkedIn */
 .button.button-linkedin {

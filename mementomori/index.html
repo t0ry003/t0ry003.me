@@ -11,6 +11,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style type="text/css">
+        body {
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        body {
+            animation-name: fadeIn;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
         :root {
             --rows-per-rect: 10;
             --cols-per-rect: 26;
@@ -38,6 +65,7 @@
             font-size: 50px;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
+            animation: slideIn 1s ease-in-out forwards;
         }
 
         #calendar {

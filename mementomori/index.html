@@ -2,193 +2,226 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>"28.12.2003" - "now"</title>
-  <meta name="description" content="Tory's links">
-  <meta name="author" content="Rares Olteanu C">
-  <meta name="description" content="The HTML5 Herald">
-  <link rel="icon" type="image/png" href="images/icon.png">
+    <meta charset="utf-8">
+    <title>"28.12.2003" - "now"</title>
+    <meta name="description" content="Tory's links">
+    <meta name="author" content="Rares Olteanu C">
+    <meta name="description" content="The HTML5 Herald">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <style type="text/css">
-    :root {
-        --rows-per-rect: 10;
-        --cols-per-rect: 26;
+    <style type="text/css">
+        :root {
+            --rows-per-rect: 10;
+            --cols-per-rect: 26;
 
-        --dark-gray:#000000;
-        --rect-gap: 10px;
-        --week-gap: 5px;
-        --week-size: 10px;
-    }
+            --dark-gray: #000000;
+            --rect-gap: 10px;
+            --week-gap: 5px;
+            --week-size: 10px;
+        }
 
-    @page {
-        size: A4 portrait;
-    }
+        @page {
+            size: A4 portrait;
+        }
 
-    @media print {
-    .week-cell {
-        -webkit-print-color-adjust: exact;
-    }
-}
+        @media print {
+            .week-cell {
+                -webkit-print-color-adjust: exact;
+            }
+        }
 
-    .title {
-        color: #000000;
-        text-align: center;
-        margin: 0px 0px 25px 0px;
-        font-size: 50px;
-        font-weight: 700;
-    }
+        .title {
+            color: #000000;
+            text-align: center;
+            margin: 0px 0px 25px 0px;
+            font-size: 50px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    #calendar {
-        width: 0px;
-        display: grid;
-        grid-gap: var(--rect-gap);
-        grid-template-columns: repeat(2, auto);
-    }
+        #calendar {
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80%;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: var(--rect-gap);
+            grid-template-columns: repeat(2, auto);
+        }
 
-    .rect-container {
-        display: grid;
-        grid-gap: var(--week-gap);
-        grid-template-columns: repeat(var(--cols-per-rect), auto);
-    }
+        .rect-container {
+            display: grid;
+            grid-gap: var(--week-gap);
+            grid-template-columns: repeat(var(--cols-per-rect), auto);
+        }
 
-    .week-cell {
-        width: var(--week-size);
-        height: var(--week-size);
-        border: 1px solid #000000;
-    }
+        .week-cell {
+            width: var(--week-size);
+            height: var(--week-size);
+            border: 1px solid #000000;
+        }
+
+        /* Media queries for tablet and mobile screens */
+        @media only screen and (max-width: 768px) {
+            .calendar {
+                grid-template-columns: repeat(26, 1fr); /* Set to 26 columns for tablet screens */
+                grid-template-rows: repeat(160, 1fr); /* Set to 160 rows for tablet screens */
+            }
+
+            .week-cell {
+                font-size: 8px; /* Reduce font size for better mobile readability */
+                padding: 5px; /* Reduce padding for better mobile usability */
+            }
+        }
+
+        /* Media queries for mobile screens */
+        @media only screen and (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(13, 1fr); /* Set to 13 columns for mobile screens */
+                grid-template-rows: repeat(320, 1fr); /* Set to 320 rows for mobile screens */
+            }
+
+            .checkbox {
+                font-size: 6px; /* Reduce font size for better mobile readability */
+                padding: 5px; /* Reduce padding for better mobile usability */
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div class="title">
-        MEMENTO MORI
-    </div>
+<div class="title">
+    MEMENTO MORI
+</div>
 
-    <!-- Will be filled by javascript later -->
-    <div id="calendar"></div>
+<!-- Will be filled by javascript later -->
+<div id="calendar"></div>
 
-  <script>
-        const rows_per_rect = get_css_variable('--rows-per-rect');
-        const cols_per_rect = get_css_variable('--cols-per-rect');
+<script>
+    const rows_per_rect = get_css_variable('--rows-per-rect');
+    const cols_per_rect = get_css_variable('--cols-per-rect');
 
-        let calendar = document.getElementById("calendar");
+    let calendar = document.getElementById("calendar");
 
-        const life_expectancy = 75;
-        let numDecades = Math.floor(life_expectancy / 10);
-        populate_calendar(numDecades);
+    const life_expectancy = 75;
+    let numDecades = Math.floor(life_expectancy / 10);
+    populate_calendar(numDecades);
 
-        fill_calendar("28/12/2003");
+    fill_calendar("28/12/2003");
 
-        /**
-         * Fill every week, counting from the given bday
-         * bday format: dd/mm/yyyy
-         */
-        function fill_calendar(bday) {
-            // convert from dd/mm/yy to mm/dd/yy
-            let [day, month, year] = bday.split("/");
-            bday = new Date(`${month}/${day}/${year}`);
+    /**
+     * Fill every week, counting from the given bday
+     * bday format: dd/mm/yyyy
+     */
+    function fill_calendar(bday) {
+        // convert from dd/mm/yy to mm/dd/yy
+        let [day, month, year] = bday.split("/");
+        bday = new Date(`${month}/${day}/${year}`);
 
-            let now = new Date();
-            let day_diff = (now - bday) / (1000 * 3600 * 24);
+        let now = new Date();
+        let day_diff = (now - bday) / (1000 * 3600 * 24);
 
-            // 52*7 = 364: each year misses 1 day.
-            // adjusting this error
-            let years = Math.floor(day_diff / 365);
-            let remaining_weeks = Math.floor((day_diff % 365) / 7);
+        // 52*7 = 364: each year misses 1 day.
+        // adjusting this error
+        let years = Math.floor(day_diff / 365);
+        let remaining_weeks = Math.floor((day_diff % 365) / 7);
 
-            let num_weeks = years*26*2 + remaining_weeks;
+        let num_weeks = years * 26 * 2 + remaining_weeks;
 
-            for(let week = 0; week < num_weeks; week++) {
-                paint_week(week);
+        for (let week = 0; week < num_weeks; week++) {
+            paint_week(week);
+        }
+    }
+
+    /**
+     * Fill week cell
+     */
+    function paint_week(num) {
+        const week = document.getElementById(`week-${num}`);
+        if (week != null) {
+            week.style.backgroundColor = get_css_variable('--dark-gray');
+        }
+    }
+
+    /**
+     * Set week IDs
+     */
+    function set_ids(numDecades) {
+        const weeks_per_year = cols_per_rect * 2;
+        const weeks_per_decade = weeks_per_year * 10;
+
+        for (let decade = 0; decade < numDecades; decade++) {
+            const decade_weeks = decade * weeks_per_decade;
+            for (let rect = 0; rect < 2; rect++) {
+                const r = document.getElementById(`rect-${decade}-${rect}`);
+                const rect_weeks = rect * cols_per_rect;
+                r.childNodes.forEach((cell, index) => {
+                    let rect_rows = Math.floor(index / 26);
+                    let offset = index % cols_per_rect;
+                    let id = decade_weeks + rect_rows * weeks_per_year + rect_weeks + offset;
+                    cell.id = `week-${id}`;
+                });
             }
         }
+    }
 
-        /**
-         * Fill week cell
-         */
-        function paint_week(num) {
-            const week = document.getElementById(`week-${num}`);
-            if(week != null) {
-                week.style.backgroundColor = get_css_variable('--dark-gray');
+    /**
+     * Fill calendar with week cells
+     */
+    function populate_calendar(numDecades) {
+        for (let i = 0; i < numDecades; i++) {
+            spawn_decade(i);
+        }
+
+        set_ids(numDecades);
+    }
+
+    /**
+     * Instantiate 2 rectangles
+     */
+    function spawn_decade(decade) {
+        for (let i = 0; i < 2; i++) {
+            const rect = spawn_rectangle(rows_per_rect, cols_per_rect);
+            rect.id = `rect-${decade}-${i}`;
+            calendar.appendChild(rect);
+        }
+    }
+
+    /**
+     * Smaller set of cells
+     */
+    function spawn_rectangle(rows, cols) {
+
+        const rect = document.createElement("div");
+        rect.classList.add("rect-container");
+
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                rect.appendChild(spawn_cell());
             }
         }
+        return rect;
+    }
 
-        /**
-         * Set week IDs
-         */
-        function set_ids(numDecades) {
-            const weeks_per_year = cols_per_rect * 2;
-            const weeks_per_decade = weeks_per_year * 10;
+    /**
+     * Cell: single week square
+     */
+    function spawn_cell() {
+        const div = document.createElement("div");
+        div.classList.add("week-cell");
+        return div;
+    }
 
-            for(let decade = 0; decade < numDecades; decade++) {
-                const decade_weeks = decade*weeks_per_decade;
-                for(let rect = 0; rect < 2; rect++) {
-                    const r = document.getElementById(`rect-${decade}-${rect}`);
-                    const rect_weeks = rect*cols_per_rect;
-                    r.childNodes.forEach((cell, index) => {
-                        let rect_rows = Math.floor(index / 26);
-                        let offset = index % cols_per_rect;
-                        let id = decade_weeks + rect_rows*weeks_per_year + rect_weeks + offset;
-                        cell.id = `week-${id}`;
-                    });
-                }
-            }
-        }
-
-        /**
-         * Fill calendar with week cells
-         */
-        function populate_calendar(numDecades) {
-            for(let i = 0; i < numDecades; i++) {
-                spawn_decade(i);
-            }
-
-            set_ids(numDecades);
-        }
-
-        /**
-         * Instantiate 2 rectangles
-         */
-        function spawn_decade(decade) {
-            for(let i = 0; i < 2; i++) {
-                const rect = spawn_rectangle(rows_per_rect, cols_per_rect);
-                rect.id = `rect-${decade}-${i}`;
-                calendar.appendChild(rect);
-            }
-        }
-
-        /**
-         * Smaller set of cells
-         */
-        function spawn_rectangle(rows, cols) {
-
-            const rect = document.createElement("div");
-            rect.classList.add("rect-container");
-
-            for(let row = 0; row < rows; row++) {
-                for(let col = 0; col < cols; col++) {
-                    rect.appendChild(spawn_cell());
-                }
-            }
-            return rect;
-        }
-
-        /**
-         * Cell: single week square
-         */
-        function spawn_cell() {
-            const div = document.createElement("div");
-            div.classList.add("week-cell");
-            return div;
-        }
-
-        /**
-         * wrapper to get CSS variables
-         */
-        function get_css_variable(name) {
-            return getComputedStyle(document.documentElement).getPropertyValue(name);
-        }
-  </script>
+    /**
+     * wrapper to get CSS variables
+     */
+    function get_css_variable(name) {
+        return getComputedStyle(document.documentElement).getPropertyValue(name);
+    }
+</script>
 </body>
 </html>

@@ -76,6 +76,11 @@
 html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
 
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 html {
     font-size: 100%;
 }
@@ -87,6 +92,10 @@ body {
     font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica,
         Arial, sans-serif;
     color: #ffffff;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 /* Typography

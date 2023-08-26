@@ -183,6 +183,16 @@ button:hover,
 }
 
 /* Mm */
+.button.button-bug {
+    color: #00d26a;
+    background-color: #00381c;
+}
+.button.button-mm:hover,
+.button.button-mm:focus {
+    filter: brightness(90%);
+}
+
+/* Mm */
 .button.button-mm {
     color: #ffffff;
     background-color: #000000;

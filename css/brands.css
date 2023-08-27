@@ -182,13 +182,13 @@ button:hover,
     filter: brightness(90%);
 }
 
-/* Mm */
-.button.button-bug {
-    color: #00d26a;
-    background-color: #00381c;
+/* Buy me a coffee */
+.button.button-coffee {
+    color: #000000;
+    background-color: #ffdd00;
 }
-.button.button-mm:hover,
-.button.button-mm:focus {
+.button.button-coffee:hover,
+.button.button-coffee:focus {
     filter: brightness(90%);
 }
 
@@ -207,8 +207,8 @@ button:hover,
     color: #ffffff;
     background-color: #000000;
 }
-.button.button-mm:hover,
-.button.button-mm:focus {
+.button.button-nightsky:hover,
+.button.button-nightsky:focus {
     filter: brightness(90%);
 }
 

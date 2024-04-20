@@ -1078,7 +1078,7 @@ main {
 .project-item-icon-box {
     --scale: 0.8;
 
-    background: var(--jet);
+    background: var(--bg-gradient-onyx);
     color: var(--orange-yellow-crayola);
     position: absolute;
     top: 50%;
@@ -1095,6 +1095,7 @@ main {
 .project-item > a:hover .project-item-icon-box {
     --scale: 1;
     opacity: 1;
+    color: #ffffff;
 }
 
 .project-item-icon-box ion-icon {

@@ -2,113 +2,648 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"/>
-    <title>@rares.olteanu03</title>
-    <meta name="description" content="Rares's links"/>
-    <meta name="author" content="Rares Cristian Olteanu"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/skeleton-dark.css"/>
-    <link rel="stylesheet" href="css/brands.css"/>
-    <link rel="icon" type="image/png" href="images/avatar@2x.png"/>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rares O. Resume</title>
 
-    <meta property="og:title" content="@rares.olteanu03"/>
-    <meta property="og:image" content="https://raw.githubusercontent.com/t0ry003/t0ry003.me/main/images/mediapreview.png"/>
-    <meta property="og:url" content="https://t0ry003.github.io/t0ry003.me/"/>
-    <meta property="og:description" content="Linktree"/>
-    <meta property="og:image:width" content="1280"/>
-    <meta property="og:image:height" content="640"/>
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/avatar@2x.png" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://kit.fontawesome.com/c75eca3d65.js" crossorigin="anonymous"></script>
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class="column" style="margin-top: 10%">
-            <img src="images/avatar@2x.png" srcset="images/avatar@2x.png 2x" alt="Avatar"/>
-            <h1>Rares Olteanu</h1>
-            <p>
-                <b>Hi!👋</b> My name is
-                <b><i>Rares Cristian Olteanu </i></b> and on most social
-                networks you can find me as <b>Tory</b>, my nickname - now I rarely use it. I
-                am a Romanian programmer and student at UPB. ✨
-                </br></br>
-                ☕️ If you've enjoyed my open-source projects and would like to show your support, you can buy me a
-                coffee! Your contribution goes a long way in helping me continue my work. Thank you!
+
+<!--
+  - #MAIN
+-->
+
+<main>
+
+  <!--
+    - #SIDEBAR
+  -->
+
+  <aside class="sidebar" data-sidebar>
+
+    <div class="sidebar-info">
+
+      <figure class="avatar-box">
+        <img src="./assets/images/avatar@2x.png" alt="Richard hanrick" width="80">
+      </figure>
+
+      <div class="info-content">
+        <h1 class="name" title="Rares Olteanu">Rares Olteanu</h1>
+
+        <p class="title"><i class="fa-solid fa-code"></i> Software Developer</p>
+      </div>
+
+      <button class="info_more-btn" data-sidebar-btn>
+        <span>Show Contacts</span>
+
+        <ion-icon name="chevron-down"></ion-icon>
+      </button>
+
+    </div>
+
+    <div class="sidebar-info_more">
+
+      <div class="separator"></div>
+
+      <ul class="contacts-list">
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+            <p class="contact-title">Email</p>
+
+            <a href="mailto:rarescolteanu@gmail.com" class="contact-link">rarescolteanu@gmail.com</a>
+          </div>
+
+        </li>
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+            <p class="contact-title">Phone</p>
+
+            <a href="tel:+40748122806" class="contact-link">+40 748 122 806</a>
+          </div>
+
+        </li>
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="calendar-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+            <p class="contact-title">Birthday</p>
+
+            <time datetime="2003-12-28">December 28, 2003</time>
+          </div>
+
+        </li>
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+            <p class="contact-title">Location</p>
+
+            <address>Bucharest, Romania</address>
+          </div>
+
+        </li>
+
+      </ul>
+
+      <div class="separator"></div>
+
+      <ul class="social-list">
+
+        <li class="social-item">
+          <a href="/linktree" class="social-link">
+            <i class="fa-solid fa-link"></i>
+            Linktree
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </aside>
+
+
+  <!--
+    - #main-content
+  -->
+
+  <div class="main-content">
+
+    <!--
+      - #NAVBAR
+    -->
+
+    <nav class="navbar">
+
+      <ul class="navbar-list">
+
+        <li class="navbar-item">
+          <button class="navbar-link  active" data-nav-link>About</button>
+        </li>
+
+        <li class="navbar-item">
+          <button class="navbar-link" data-nav-link>Resume</button>
+        </li>
+
+        <li class="navbar-item">
+          <button class="navbar-link" data-nav-link>Portfolio</button>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
+    <!--
+      - #ABOUT
+    -->
+
+    <article class="about  active" data-page="about">
+
+      <header>
+        <h2 class="h2 article-title">About me</h2>
+      </header>
+
+      <section class="about-text">
+        <p>
+          Hi!👋 My name is Rares Cristian Olteanu and on most social networks you can find me as Tory, my
+          nickname - now I rarely use it. I am a Romanian programmer and student at UPB. ✨
+
+        </p>
+
+        <p>
+          ☕️ If you've enjoyed my open-source projects and would like to show your support, you can buy me a
+          coffee! Your contribution goes a long way in helping me continue my work. Thank you!
+        </p>
+      </section>
+
+
+      <!--
+        - service
+      -->
+
+      <section class="service">
+
+        <h3 class="h3 service-title">What i'm doing</h3>
+
+        <ul class="service-list">
+
+          <li class="service-item">
+
+            <div class="service-icon-box">
+              <img class="service-icon-filter" src="./assets/images/cplusplus.svg"
+                   alt="cpp icon" width="40">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">C++</h4>
+
+              <p class="service-item-text">
+                Computer science graduate skilled in C++ programming, with hands-on experience in
+                implementing algorithms and data structures through university projects. Proficient in
+                modern C++ standards, showcasing efficiency and problem-solving abilities. Collaborative
+                team player with effective communication skills honed through project work. Eager to
+                apply academic knowledge to real-world software development challenges.
+              </p>
+            </div>
+
+          </li>
+
+          <li class="service-item">
+
+            <div class="service-icon-box">
+              <img src="./assets/images/c-sharp.svg" class="service-icon-filter" alt="c-sharp icon"
+                   width="40">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">C#</h4>
+
+              <p class="service-item-text">
+                Self-directed learner with a solid grasp of C# programming language acquired through
+                dedicated online courses. Proficient in the fundamentals of .NET framework,
+                object-oriented programming, and software development concepts. Skilled in translating
+                theoretical knowledge into practical coding scenarios. Focused on continuous learning
+                and staying updated with the latest C# advancements. Eager to apply acquired skills in a
+                practical work environment, with a strong commitment to professional growth and
+                development.
+              </p>
+            </div>
+
+          </li>
+
+          <li class="service-item">
+
+            <div class="service-icon-box">
+              <img src="./assets/images/python.svg" class="service-icon-filter" alt="python icon"
+                   width="40">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">Python</h4>
+
+              <p class="service-item-text">
+                Results-driven Python developer with a solid academic background, adept at creating web
+                applications, data analysis tools, and automation scripts. Demonstrated practical
+                experience using Django, Flask, NumPy, and pandas in project settings. Independent
+                problem solver with a knack for designing and implementing solutions. Adept at adapting
+                to new technologies and exploring diverse applications of Python in software
+                development.
+              </p>
+            </div>
+
+          </li>
+
+          <li class="service-item">
+            <div class="service-icon-box">
+              <img src="./assets/images/java.svg" class="service-icon-filter" alt="java icon" width="40">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">Java</h4>
+
+              <p class="service-item-text">
+                Self-taught Java developer with a solid foundation gained through online courses and
+                independent study. Proficient in building enterprise-level applications using Java,
+                Spring framework, and Hibernate ORM. Applied knowledge in database design and SQL
+                through practical projects. Familiar with agile methodologies and version control
+                systems. Quick learner with a proactive approach to software development challenges.
+                Eager to contribute hands-on Java skills and adaptability to collaborative team
+                environments.
+              </p>
+            </div>
+          </li>
+
+          <li class="service-item">
+            <div class="service-icon-box">
+              <img src="./assets/images/linux.svg" class="service-icon-filter"
+                   alt="linux icon" width="40">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">Linux</h4>
+
+              <p class="service-item-text">
+                Resourceful and detail-oriented professional with a solid understanding of Linux systems
+                at a medium level. Proficient in system configuration, user management, and
+                troubleshooting in diverse Linux environments. Demonstrated expertise in shell scripting
+                for automation and task optimization. Skilled in utilizing package management systems
+                and maintaining system security through access controls and firewalls. Familiar with
+                server deployment and maintenance, including web servers (e.g., Apache, Nginx) and
+                databases (e.g., MySQL, PostgreSQL). Strong commitment to staying abreast of Linux
+                advancements and applying practical solutions to enhance system efficiency. Ready to
+                contribute well-rounded Linux skills and a proactive problem-solving approach to system
+                administration roles.
+              </p>
+            </div>
+          </li>
+
+          <li class="service-item">
+            <div class="service-icon-box">
+              <img src="./assets/images/jb_beam.svg" alt="jetbrains icon" width="60">
+            </div>
+
+            <div class="service-content-box">
+              <h4 class="h4 service-item-title">JetBrains</h4>
+
+              <p class="service-item-text">
+                Detail-oriented software developer with a focus on JetBrains IDEs as primary tools
+                during university studies. Proficient in leveraging IntelliJ IDEA, PyCharm, and CLion to
+                develop, debug, and optimize code across various languages, including Java, Python, and
+                C++. Solid understanding of software development principles and best practices acquired
+                through practical application in JetBrains environments. Skilled in collaborating with
+                cross-functional teams and adapting quickly to different development ecosystems.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!--
+        - testimonials modal
+      -->
+
+      <div class="modal-container" data-modal-container>
+
+        <div class="overlay" data-overlay></div>
+
+        <section class="testimonials-modal">
+
+          <button class="modal-close-btn" data-modal-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <div class="modal-img-wrapper">
+            <figure class="modal-avatar-box">
+              <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+            </figure>
+
+            <img src="./assets/images/icon-quote.svg" alt="quote icon">
+          </div>
+
+          <div class="modal-content">
+
+            <h4 class="h3 modal-title" data-modal-title></h4>
+
+            <time datetime="2021-06-14">1</time>
+
+            <div data-modal-text>
+              <p>
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </article>
+
+
+    <!--
+      - #RESUME
+    -->
+
+    <article class="resume" data-page="resume">
+
+      <header>
+        <h2 class="h2 article-title">Resume</h2>
+      </header>
+
+      <section class="timeline">
+
+        <div class="title-wrapper">
+          <div class="icon-box">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+
+          <h3 class="h3">Education</h3>
+        </div>
+
+        <ol class="timeline-list">
+
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Alexandru Odobescu National College</h4>
+
+            <span>2018 - 2022</span>
+
+            <p class="timeline-text">
+              I studied mathematics and informatics at Alexandru Odobescu National College for 4 years,
+              after which I took the Bachelor's degree exam
+            </p>
+          </li>
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Politehnica University of Bucharest - ETTI</h4>
+
+            <span>2022 - Present</span>
+
+            <p class="timeline-text">
+              I study at the Faculty of Electronics, Telecommunications and Information Technology within
+              the Politehnica University of Bucharest. I study the main profile of this faculty where I
+              learn embedded circuit programming, PCB design and many other things in the field of
+              electronics.
+            </p>
+          </li>
+        </ol>
+
+      </section>
+
+      <section class="timeline">
+        <div class="title-wrapper">
+          <div class="icon-box">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+
+          <h3 class="h3">Experience</h3>
+        </div>
+
+        <ol class="timeline-list">
+          <li class="timeline-item">
+
+            <h4 class="h4 timeline-item-title">Personal projects</h4>
+
+            <span>2014 — Present</span>
+
+            <p class="timeline-text">
+              I make various projects/applications for myself or other people (for a fee). These projects
+              are either public on my GitHub page or private. These made me continue, always discovering
+              new things, developing myself as a programmer.
             </p>
 
-            <!-- Buy me a coffee -->
-            <a class="button button-coffee" href="https://www.buymeacoffee.com/rares.cristian" target="_blank"
-               rel="noopener"><img
-                    class="icon" src="icons/bmc-logo.svg" alt="Buy me a coffee"/>Buy me a coffee</a>
-            <br/>
+          </li>
+        </ol>
+      </section>
 
-            <!-- Github -->
-            <a class="button button-github" href="https://github.com/t0ry003" target="_blank" rel="noopener"><img
-                    class="icon" src="icons/github.svg" alt="GitHub Logo"/>GitHub</a>
-            <br/>
+      <section class="skill">
 
-            <!-- Twitter -->
-            <a class="button button-twitter" href="https://twitter.com/RaresOlteanu03" target="_blank"
-               rel="noopener"><img class="icon" src="icons/twitter.svg" alt="Twitter Logo"/>Twitter</a>
-            <br/>
+        <h3 class="h3 skills-title">My skills</h3>
 
-            <!-- Instagram -->
-            <a class="button button-instagram" href="https://www.instagram.com/rares.olteanu03/" target="_blank"
-               rel="noopener"><img class="icon" src="icons/instagram.svg" alt="Instagram Logo"/>Instagram</a>
-            <br/>
+        <ul class="skills-list content-card">
 
-            <!-- YouTube -->
-            <a class="button button-youtube" href="https://www.youtube.com/c/OlteanuRares" target="_blank"
-               rel="noopener"><img class="icon" src="icons/youtube.svg" alt="YouTube Logo"/>YouTube</a>
-            <br/>
+          <li class="skills-item">
 
-            <!-- Discord -->
-            <a class="button button-discord" href="https://discord.gg/pssEkqQ" target="_blank" rel="noopener"><img
-                    class="icon" src="icons/discord.svg" alt="Discord Logo"/>Discord</a>
-            <br/>
+            <div class="title-wrapper">
+              <h5 class="h5">C++</h5>
+              <data value="95">95%</data>
+            </div>
 
-            <!-- Spotify -->
-            <a class="button button-spotify"
-               href="https://open.spotify.com/user/ekb74gpe2rlu2tiae551yp48v?si=TwmFDjaYQyawbwlszwwdTA"
-               target="_blank" rel="noopener"><img class="icon" src="icons/spotify.svg"
-                                                   alt="Spotify Logo"/>Spotify</a>
-            <br/>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 95%;"></div>
+            </div>
 
-            <!-- Reddit -->
-            <a class="button button-reddit" href="https://www.reddit.com/user/t0ry03" target="_blank"
-               rel="noopener"><img class="icon" src="icons/reddit.svg" alt="Reddit Logo"/>Reddit</a>
-            <br/>
+          </li>
 
-            <!-- LinkedIn -->
-            <a class="button button-linkedin" href="https://www.linkedin.com/in/olteanu-rares-48b1171b6/"
-               target="_blank" rel="noopener"><img class="icon" src="icons/linkedin.svg"
-                                                   alt="LinkedIn Logo"/>LinkedIn</a>
-            <br/>
+          <li class="skills-item">
 
-            <!-- Facebook -->
-            <a class="button button-facebook" href="https://www.facebook.com/profile.php?id=100006001728317"
-               target="_blank" rel="noopener"><img class="icon" src="icons/facebook.svg"
-                                                   alt="Facebook Logo"/>Facebook</a>
-            <br/>
+            <div class="title-wrapper">
+              <h5 class="h5">C#</h5>
+              <data value="85">85%</data>
+            </div>
 
-            <!-- Memento Mori -->
-            <a class="button button-mm" href="./mementomori" target="_blank" rel="noopener"><img class="icon"
-                                                                                                 src="icons/mm.svg"
-                                                                                                 alt="Memnto Mori"/>Memento
-                Mori</a>
-            <br/>
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 85%;"></div>
+            </div>
 
-            <!-- Nightsky -->
-            <a class="button button-nightsky" href="nightsky/nightsky.jpg" target="_blank" rel="noopener"><img
-                    class="icon" src="icons/nightsky.svg" alt="Nightsky">Night Sky</a>
-            <br>
+          </li>
 
-            <br/>
-            <p>Created by <a rel="noopener">t0ry003</a></p>
+          <li class="skills-item">
+
+            <div class="title-wrapper">
+              <h5 class="h5">Python</h5>
+              <data value="90">90%</data>
+            </div>
+
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 90%;"></div>
+            </div>
+
+          </li>
+
+          <li class="skills-item">
+
+            <div class="title-wrapper">
+              <h5 class="h5">Java</h5>
+              <data value="60">60%</data>
+            </div>
+
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 60%;"></div>
+            </div>
+
+          </li>
+
+          <li class="skills-item">
+
+            <div class="title-wrapper">
+              <h5 class="h5">Linux</h5>
+              <data value="90">90%</data>
+            </div>
+
+            <div class="skill-progress-bg">
+              <div class="skill-progress-fill" style="width: 90%;"></div>
+            </div>
+
+          </li>
+
+        </ul>
+
+      </section>
+
+    </article>
+
+
+    <!--
+      - #PORTFOLIO
+    -->
+
+    <article class="portfolio" data-page="portfolio">
+
+      <header>
+        <h2 class="h2 article-title">Portfolio</h2>
+      </header>
+
+      <section class="projects">
+
+        <ul class="filter-list">
+
+          <li class="filter-item">
+            <button class="active" data-filter-btn>All</button>
+          </li>
+
+          <li class="filter-item">
+            <button data-filter-btn>Python</button>
+          </li>
+
+          <li class="filter-item">
+            <button data-filter-btn>C++</button>
+          </li>
+
+          <li class="filter-item">
+            <button data-filter-btn>C#</button>
+          </li>
+
+          <li class="filter-item">
+            <button data-filter-btn>Java</button>
+          </li>
+
+        </ul>
+
+        <div class="filter-select-box">
+
+          <button class="filter-select" data-select>
+
+            <div class="select-value" data-selecct-value>Select category</div>
+
+            <div class="select-icon">
+              <ion-icon name="chevron-down"></ion-icon>
+            </div>
+
+          </button>
+
+          <ul class="select-list">
+
+            <li class="select-item">
+              <button data-select-item>All</button>
+            </li>
+
+            <li class="select-item">
+              <button data-select-item>Python</button>
+            </li>
+
+            <li class="select-item">
+              <button data-select-item>C++</button>
+            </li>
+
+            <li class="select-item">
+              <button data-select-item>C#</button>
+            </li>
+
+            <li class="select-item">
+              <button data-select-item>Java</button>
+            </li>
+
+          </ul>
+
         </div>
-    </div>
-</div>
+
+        <ul class="project-list">
+
+          <li class="project-item  active" data-filter-item data-category="python">
+            <a href="https://github.com/t0ry003/GoodChess" target="_blank">
+
+              <figure class="project-img">
+                <div class="project-item-icon-box">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </div>
+
+                <img src="./assets/images/project-1.png" alt="Chess Game" loading="lazy">
+              </figure>
+
+              <h3 class="project-title">GoodChess</h3>
+
+              <p class="project-category">Python</p>
+
+            </a>
+          </li>
+        </ul>
+
+      </section>
+
+    </article>
+
+  </div>
+
+</main>
+
+
+<!--
+  - custom js link
+-->
+<script src="./assets/js/script.js"></script>
+
+<!--
+  - ionicon link
+-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

@@ -333,10 +333,10 @@ main {
 .info-content .title {
     color: var(--white-1);
     background: var(--onyx);
-    font-size: var(--fs-8);
-    font-weight: var(--fw-300);
+    font-size: var(--fs-4);
+    font-weight: var(--fw-600);
     width: max-content;
-    padding: 3px 12px;
+    padding: 3px 14px;
     border-radius: 8px;
     transition: 0.3s;
 }

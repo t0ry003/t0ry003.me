@@ -46,9 +46,72 @@
   .thumb::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55))}
   .meta{display:flex; flex-direction:column; gap:10px; padding:12px 14px 14px}
   .title{font-weight:800; font-size:15px}
-  .actions{display:flex; gap:8px; margin-top:2px}
-  .btn{cursor:pointer; border:1px solid var(--ring); background:#0f0f0f; color:var(--fg);
-     border-radius:10px; padding:8px 12px; font-weight:700; text-decoration:none}
+  .actions{
+    display:flex;
+    gap:8px;
+    margin-top:2px;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    width:100%;
+    overflow:visible !important;
+  }
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--footer-h,64px) + 24px);
+    transform: translateX(-50%) scale(1);
+    background: #181818;
+    color: #e7e7e7;
+    border-radius: 10px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.25s cubic-bezier(.4,1.2,.6,1), transform 0.25s cubic-bezier(.4,1.2,.6,1);
+    will-change: opacity, transform;
+    min-width: 120px;
+    max-width: 90vw;
+    text-align: center;
+    word-break: break-word;
+  }
+  .toast.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1.04);
+  }
+  @media (max-width: 600px) {
+    .toast {
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      min-width: 80px;
+      max-width: 96vw;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .toast, .toast.show {
+      transition: none !important;
+    }
+  }
+  .btn{
+    cursor:pointer;
+    border:1px solid var(--ring);
+    background:#0f0f0f;
+    color:var(--fg);
+    border-radius:10px;
+    padding:0;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-grid;
+    place-items:center;
+    min-width:40px;
+    min-height:40px;
+  }
 .btn:hover{text-decoration:none}
   .btn-brand{background:var(--brand); color:#0b0b0b; border:none}
 
@@ -101,7 +164,16 @@
 
   /* Icon buttons */
   .actions{display:flex; gap:8px; margin-top:2px}
-  .iconbtn{display:inline-grid; place-items:center; width:40px; height:40px; padding:0; border-radius:12px}
+  .iconbtn{
+    display:inline-grid;
+    place-items:center;
+    width:40px;
+    height:40px;
+    padding:0;
+    border-radius:12px;
+    background:none;
+    box-shadow:none;
+  }
   .iconbtn svg{width:20px; height:20px}
   .btn{cursor:pointer; border:1px solid var(--ring); background:#0f0f0f; color:var(--fg); border-radius:10px; padding:8px 12px; font-weight:700; text-decoration:none}
   .btn-brand{background:var(--brand); color:#0b0b0b; border:none}
@@ -256,12 +328,42 @@ async function buildCard(url){
   const open = document.createElement('a'); open.className = 'btn iconbtn'; open.href = url; open.target = '_blank'; open.rel = 'noopener'; open.title = 'Open in Spotify'; open.setAttribute('aria-label','Open in Spotify');
   open.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2" stroke="currentColor" fill="none"/><path d="M10 4h10v10" stroke="currentColor" fill="none"/><path d="M20 4L12 12" stroke="currentColor"/></svg>';
 
-  // Copy link (icon)
-  const copy = document.createElement('button'); copy.className = 'btn iconbtn'; copy.title = 'Copy link'; copy.setAttribute('aria-label','Copy link');
-  copy.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="12" height="12" rx="2" stroke="currentColor" fill="none"/><rect x="3" y="9" width="12" height="12" rx="2" stroke="currentColor" fill="none"/></svg>';
-  copy.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText(url); copy.title='Copied'; setTimeout(()=>copy.title='Copy link',1200);}catch{} });
 
+  // Copy link (icon) with toast
+  const copy = document.createElement('button');
+  copy.className = 'btn iconbtn';
+  copy.title = 'Copy link';
+  copy.setAttribute('aria-label','Copy link');
+  copy.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="12" height="12" rx="2" stroke="currentColor" fill="none"/><rect x="3" y="9" width="12" height="12" rx="2" stroke="currentColor" fill="none"/></svg>';
+
+
+  // Only append the copy button to actions
   actions.append(play, open, copy);
+
+  copy.addEventListener('click', async (e) => {
+    let toast = document.querySelector('.toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'toast';
+      document.body.appendChild(toast);
+    }
+    // Add clipboard icon SVG before text
+    const icon = `<svg style="vertical-align:middle;margin-right:8px;z-index:1;position:relative;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1db954" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="8" height="4" rx="1.5"/><rect x="5" y="7" width="14" height="14" rx="2"/></svg>`;
+    toast.innerHTML = icon + '<span style="vertical-align:middle;z-index:1;position:relative;">Link copied!</span>';
+    toast.setAttribute('aria-live', 'polite');
+    toast.setAttribute('role', 'status');
+    try {
+      await navigator.clipboard.writeText(url);
+      copy.title = 'Copied';
+    } catch {
+      toast.innerHTML = icon + '<span style="vertical-align:middle;z-index:1;position:relative;">Copy failed</span>';
+    }
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      copy.title = 'Copy link';
+    }, 1600);
+  });
 
   m.append(title, actions);
   card.appendChild(m);

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+mkdir Nume
+cd Nume
+
+# ex 2 - schimbi bash cu firefox
+FILE="ex2.txt"
+ps -eo user,ruser,command | grep bash | head -n 1 | awk '{print $1}' > $FILE
+ps -eo %mem,%cpu,command | head -n 1 >> $FILE
+ps -eo %mem,%cpu,command | grep bash | head -n 1 >> $FILE
+
+chmod uo=rw $FILE
+
+# ex 3
+ps -e --no-headers | wc -l >> $FILE
+sudo lsof -i :631 >> $FILE
+sudo renice -n -20 -p $(sudo lsof -t -i :631) >> $FILE
+
+# ex 4
+for i in {100..109}; do
+    echo $((i - 5)) >> $FILE
+done
+
+#ex 5
+ifconfig eth0 | grep inet | head -n 1 | awk '{print $2}' >> $FILE

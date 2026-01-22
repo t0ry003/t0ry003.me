@@ -1,0 +1,26 @@
+#!/bin/bash
+
+mkdir Nume
+cd Nume
+
+# ex 2
+FILE="ex2.txt"
+df -h | head -n 1 > $FILE
+df -h | grep "/$" >> $FILE
+df -h | grep "/$" | awk '{print $4}' >> $FILE
+
+chmod ug=rw $FILE
+
+# ex 3
+ln $FILE ex2_link
+ls -li $FILE ex2_link
+
+# ex 4
+#!/bin/bash
+for i in {1..20}; do
+        echo $((i * 3)) >> $FILE
+done
+
+# ex 5
+ip -o -f inet addr show scope global | grep "eth0" | awk '{print $4}' | grep -o '/.*' >> $FILE
+ifconfig eth0 | grep "netmask" | awk '{print $4}' >> $FILE

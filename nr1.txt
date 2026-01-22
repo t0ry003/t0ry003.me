@@ -8,6 +8,7 @@ FILE="ex2.txt"
 df -h | head -n 1 > $FILE
 df -h | grep "/$" >> $FILE
 df -h | grep "/$" | awk '{print $4}' >> $FILE
+lscpu | grep "cache" >> $FILE
 
 chmod ug=rw $FILE
 

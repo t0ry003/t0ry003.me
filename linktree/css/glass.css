@@ -109,8 +109,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 320px;
-    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 320px;
     height: auto;
     min-height: 52px;
     margin: 0 auto 14px;

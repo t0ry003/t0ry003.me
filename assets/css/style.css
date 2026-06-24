@@ -27,21 +27,21 @@
             #000000 50%
     );
     --text-gradient-purple: linear-gradient(
-            to right,
-            #5D3587,
-            #5D3587
+            135deg,
+            #8b5cf6,
+            #6366f1
     );
 
     /* solid */
 
-    --jet: #ffffff;
+    --jet: hsl(0 0% 100% / 0.1);
     --onyx: #1e1e1e;
     --eerie-black-1: #171717;
     --eerie-black-2: #000000;
     --smoky-black: #0e0e0e;
     --white-1: #ffffff;
     --white-2: #f1f1f1;
-    --orange-yellow-crayola: #5D3587;
+    --orange-yellow-crayola: #8b5cf6;
     --vegas-gold: #ffffff;
     --light-gray: #b9b9b9;
     --light-gray-70: #e1e1e1;
@@ -53,6 +53,8 @@
 
     /* font-family */
     --ff-poppins: 'Poppins', sans-serif;
+    --ff-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo,
+        monospace;
 
     /* font-size */
     --fs-1: 24px;
@@ -425,17 +427,29 @@ main {
 
 .social-list {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px;
-    padding-bottom: 4px;
-    padding-left: 7px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 4px 4px;
+}
+
+.social-item {
+    flex: 1;
 }
 
 .social-item .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     color: var(--light-gray-70);
     font-size: 18px;
     transition: color 0.3s linear;
+}
+
+.social-item .social-link .social-label {
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 
@@ -1673,34 +1687,6 @@ main {
 @media (min-width: 1250px) {
 
     /**
-     * RESET
-     */
-    body::-webkit-scrollbar {
-        width: 20px;
-    }
-
-    body::-webkit-scrollbar-track {
-        background: var(--smoky-black);
-    }
-
-    body::-webkit-scrollbar-thumb {
-        border: 5px solid var(--smoky-black);
-        background: hsla(0, 0%, 100%, 0.1);
-        border-radius: 20px;
-        box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11),
-        inset -1px -1px 0 hsla(0, 0%, 100%, 0.11);
-    }
-
-    body::-webkit-scrollbar-thumb:hover {
-        background: hsla(0, 0%, 100%, 0.15);
-    }
-
-    body::-webkit-scrollbar-button {
-        height: 60px;
-    }
-
-
-    /**
      * REUSED STYLE
      */
     .sidebar, article {
@@ -1802,4 +1788,454 @@ main {
         max-width: 700px;
     }
 
+}
+
+
+/*-----------------------------------*\
+  #UI POLISH — LIQUID GLASS
+\*-----------------------------------*/
+
+:root {
+    --glass-bg: hsl(258 38% 10% / 0.32);
+    --glass-bg-strong: hsl(258 38% 9% / 0.46);
+    --glass-border: hsl(258 85% 82% / 0.16);
+    --glass-border-strong: hsl(258 85% 82% / 0.34);
+    --glass-blur: blur(20px) saturate(150%);
+    --glass-sheen: linear-gradient(
+        160deg,
+        hsl(258 70% 82% / 0.07) 0%,
+        hsl(258 70% 82% / 0.02) 35%,
+        transparent 70%
+    );
+    --glass-shadow:
+        0 10px 34px hsl(258 50% 4% / 0.5),
+        inset 0 1px 0 hsl(0 0% 100% / 0.07);
+}
+
+/* cross-document crossfade between resume <-> linktree (supported browsers) */
+@view-transition {
+    navigation: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* soft ambient glow across the top so the background isn't flat black */
+body {
+    background:
+        radial-gradient(
+            80% 55% at 50% -10%,
+            hsl(258 80% 55% / 0.09) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            45% 45% at 100% 100%,
+            hsl(243 70% 55% / 0.05) 0%,
+            transparent 55%
+        ),
+        var(--smoky-black);
+    background-attachment: fixed;
+}
+
+/* sidebar + panels: frosted glass over the ambient glow */
+.sidebar,
+article {
+    background: var(--glass-sheen), var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+}
+
+/* circular avatar, no black box — just a glass ring and glow */
+.avatar-box {
+    background: transparent;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 1px var(--glass-border-strong),
+        0 0 22px hsl(258 90% 60% / 0.35),
+        0 12px 30px hsl(258 90% 45% / 0.22);
+    view-transition-name: site-avatar;
+}
+
+.avatar-box img {
+    border-radius: 50%;
+}
+
+/* monospace for the technical details */
+.contact-title,
+.timeline-list span,
+.skills-item data,
+.social-label,
+.project-category {
+    font-family: var(--ff-mono);
+}
+
+.contact-title {
+    letter-spacing: 0.6px;
+}
+
+.timeline-list span {
+    font-size: var(--fs-7);
+    letter-spacing: 0.3px;
+    color: var(--light-gray-70);
+}
+
+.skills-item data {
+    font-size: var(--fs-7);
+    color: var(--light-gray-70);
+}
+
+/* skills: dark track, gradient fill that grows in with a faint glow */
+.skill-progress-bg {
+    background: hsl(0 0% 100% / 0.07);
+    height: 7px;
+    overflow: hidden;
+}
+
+.skill-progress-fill {
+    transform-origin: left center;
+    box-shadow: 0 0 12px hsl(258 90% 62% / 0.45);
+    animation: skill-grow 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes skill-grow {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* service cards: glass panels, gentle lift on hover, no black frame */
+.service-item {
+    opacity: 1;
+    background: var(--glass-sheen), var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.service-item::before {
+    display: none;
+}
+
+.service-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--glass-border-strong);
+    box-shadow:
+        0 16px 40px hsl(258 50% 4% / 0.55),
+        inset 0 1px 0 hsl(0 0% 100% / 0.1),
+        0 0 0 1px hsl(258 90% 70% / 0.35);
+}
+
+/* timeline marker in the accent rather than a plain white dot */
+.timeline-item::after {
+    background: #8b5cf6;
+    box-shadow: 0 0 0 3px hsl(258 90% 60% / 0.2);
+}
+
+/* nav: unified active color with a small indicator */
+.navbar-link {
+    position: relative;
+}
+
+.navbar-link.active {
+    color: #a78bfa;
+}
+
+.navbar-link.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text-gradient-purple);
+}
+
+/* Download CV pill: glass button */
+.info-content .title {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+.info-content .title:hover {
+    background: hsl(258 55% 34% / 0.55);
+    border-color: var(--glass-border-strong);
+    color: #ffffff;
+}
+
+/* accessible focus rings, but clean on mouse clicks */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* unified scrollbar — identical on the resume and the linktree */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5cf6 transparent;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(258 60% 52% / 0.65);
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(258 72% 60% / 0.85);
+    background-clip: padding-box;
+}
+
+/* body copy: larger, heavier and higher-contrast so it reads easily */
+.about-text,
+.service-item-text,
+.timeline-text {
+    color: hsl(250 12% 82%);
+    font-weight: var(--fw-400);
+}
+
+.about-text {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* mobile/tablet: a floating pill nav instead of a slab glued to the edge */
+@media (max-width: 1023px) {
+    .navbar {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 16px;
+        width: max-content;
+        max-width: calc(100% - 24px);
+        border: 1px solid var(--glass-border);
+        border-radius: 999px;
+        background: var(--glass-bg-strong);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        box-shadow: 0 12px 34px hsl(258 50% 4% / 0.55);
+    }
+
+    .navbar-list {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .navbar-link {
+        padding: 10px 18px;
+        border-radius: 999px;
+        transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .navbar-link:hover {
+        background: hsl(0 0% 100% / 0.05);
+    }
+
+    .navbar-link.active {
+        background: hsl(258 90% 66% / 0.16);
+    }
+
+    .navbar-link.active::after {
+        display: none;
+    }
+}
+
+
+/* navbar: glass on every breakpoint */
+.navbar {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+/* contact + resume icon tiles: glass, no black frame */
+.icon-box {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.08);
+}
+
+.icon-box::before {
+    display: none;
+}
+
+/* skills card: glass, no black frame */
+.content-card {
+    background: var(--glass-sheen), var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+}
+
+.content-card::before {
+    display: none;
+}
+
+/* portfolio filter dropdown: glass */
+.filter-select,
+.select-list {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    color: var(--light-gray-70);
+}
+
+.select-item button {
+    background: transparent;
+    color: var(--light-gray-70);
+}
+
+.select-item button:hover {
+    background: hsl(258 90% 66% / 0.16);
+    color: #ffffff;
+}
+
+/* portfolio hover eye-icon: glass instead of a black tile */
+.project-item-icon-box {
+    background: hsl(258 50% 22% / 0.55);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+/* timeline connector tinted to the theme */
+.timeline-item:not(:last-child)::before {
+    background: hsl(258 60% 75% / 0.18);
+}
+
+/* testimonials modal (if ever shown): glass */
+.testimonials-modal {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+.modal-close-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+}
+
+/* "Show Contacts" toggle (mobile/tablet): glass */
+.info_more-btn {
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+.info_more-btn:hover,
+.info_more-btn:focus {
+    background: hsl(258 60% 34% / 0.6);
+}
+
+/* mobile/tablet: redesigned contact-card expander */
+@media (max-width: 1249px) {
+    .sidebar {
+        max-height: none;
+        transition: none;
+    }
+
+    .sidebar.active {
+        max-height: none;
+    }
+
+    .sidebar-info {
+        flex-wrap: wrap;
+    }
+
+    /* toggle is now a full-width glass bar under the avatar row */
+    .info_more-btn {
+        position: static;
+        flex-basis: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 8px;
+        padding: 11px;
+        border-radius: 12px;
+        font-size: var(--fs-8);
+        font-weight: var(--fw-500);
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: var(--light-gray-70);
+    }
+
+    .info_more-btn::before {
+        display: none;
+    }
+
+    .info_more-btn span {
+        display: block;
+    }
+
+    .info_more-btn i {
+        font-size: 11px;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active .info_more-btn {
+        color: #ffffff;
+    }
+
+    .sidebar.active .info_more-btn i {
+        transform: rotate(180deg);
+    }
+
+    /* collapsible block animates its height via grid rows (no magic numbers) */
+    .sidebar-info_more {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+            grid-template-rows 0.4s ease,
+            opacity 0.35s ease,
+            visibility 0.4s;
+    }
+
+    .sidebar-more-inner {
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .sidebar.active .sidebar-info_more {
+        grid-template-rows: 1fr;
+        opacity: 1;
+        visibility: visible;
+    }
 }

@@ -1,0 +1,211 @@
+/*-----------------------------------*\
+  LINKTREE — LIQUID GLASS
+  Mirrors the resume theme so moving between the two pages feels seamless.
+\*-----------------------------------*/
+
+/* cross-document crossfade between resume <-> linktree (supported browsers) */
+@view-transition {
+    navigation: auto;
+}
+
+:root {
+    --smoky-black: #0e0e0e;
+    --ff-poppins: "Poppins", sans-serif;
+    --ff-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --accent: #8b5cf6;
+    --accent-light: #a78bfa;
+    --glass-bg-strong: hsl(258 38% 9% / 0.46);
+    --glass-pill: hsl(258 30% 16% / 0.62);
+    --glass-border: hsl(258 85% 82% / 0.16);
+    --glass-border-strong: hsl(258 85% 82% / 0.34);
+    --glass-blur: blur(18px) saturate(150%);
+    --glass-sheen: linear-gradient(
+        160deg,
+        hsl(258 70% 82% / 0.07) 0%,
+        hsl(258 70% 82% / 0.02) 35%,
+        transparent 70%
+    );
+    --glass-shadow:
+        0 10px 30px hsl(258 50% 4% / 0.5),
+        inset 0 1px 0 hsl(0 0% 100% / 0.07);
+    --text: hsl(250 12% 86%);
+    --text-dim: hsl(250 10% 68%);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--ff-poppins);
+    color: var(--text);
+    background:
+        radial-gradient(
+            80% 55% at 50% -10%,
+            hsl(258 80% 55% / 0.1) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            45% 45% at 100% 100%,
+            hsl(243 70% 55% / 0.06) 0%,
+            transparent 55%
+        ),
+        var(--smoky-black);
+    background-attachment: fixed;
+}
+
+/* a single frosted card holds everything, like the resume panels */
+.column {
+    max-width: 440px;
+    margin: 7vh auto 6vh;
+    padding: 38px 26px 30px;
+    background: var(--glass-sheen), var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+}
+
+/* avatar: same circular glass ring + glow as the resume, morphs across pages */
+.column > img {
+    width: 132px;
+    height: 132px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+    box-shadow:
+        0 0 0 1px var(--glass-border-strong),
+        0 0 22px hsl(258 90% 60% / 0.35),
+        0 12px 30px hsl(258 90% 45% / 0.22);
+    view-transition-name: site-avatar;
+}
+
+.column > h1 {
+    margin: 0 0 12px;
+    font-family: var(--ff-poppins);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    color: #ffffff;
+}
+
+.column > p {
+    max-width: 430px;
+    margin: 0 auto 28px;
+    font-family: var(--ff-poppins);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+/* links become glass pills; brand colours are dropped for a cohesive look */
+.button,
+.button:visited {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 320px;
+    max-width: 100%;
+    height: auto;
+    min-height: 52px;
+    margin: 0 auto 14px;
+    padding: 14px 20px;
+    font-family: var(--ff-poppins);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+    color: #ffffff !important;
+    background: var(--glass-sheen), var(--glass-pill) !important;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-shadow);
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
+    color: #ffffff !important;
+    filter: none !important;
+    transform: translateY(-3px);
+    border-color: var(--glass-border-strong);
+    box-shadow:
+        0 16px 34px hsl(258 50% 4% / 0.55),
+        inset 0 1px 0 hsl(0 0% 100% / 0.1),
+        0 0 0 1px hsl(258 90% 70% / 0.35);
+}
+
+/* normalise every brand icon to white so they read on the dark glass */
+.icon {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+}
+
+/* <br> spacers are no longer needed once buttons stack as flex blocks */
+.column br {
+    display: none;
+}
+
+/* footer credit */
+.column > p:last-of-type {
+    margin-top: 22px;
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    color: var(--accent-light);
+}
+
+/* unified scrollbar — identical on the resume and the linktree */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8b5cf6 transparent;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(258 60% 52% / 0.65);
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(258 72% 60% / 0.85);
+    background-clip: padding-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

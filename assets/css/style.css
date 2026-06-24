@@ -1990,6 +1990,7 @@ article {
 * {
     scrollbar-width: thin;
     scrollbar-color: #8b5cf6 transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 ::-webkit-scrollbar {
